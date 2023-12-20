@@ -7,22 +7,26 @@ public class Main {
 		Locale.setDefault(Locale.US);
 		Scanner read = new Scanner(System.in);
 		
-		System.out.println(fatorial(6));
 		
+		imprimeFibonacciRecursivo(10);
 
 	}
 
 	
 	
-	
-	
-	public static int fatorial(int x){
-		if(x == 0 || x == 1) {
-			return 1;
-		}
-		return x*fatorial(x-1);
-		
-	}
+	  public static void imprimeFibonacciRecursivo(int n) {
+	        for (int i = 0; i <= n; i++) {
+	            System.out.print(fibonacciRecursivo(i) + " ");
+	        }
+	    }
+
+	    public static int fibonacciRecursivo(int n) {
+	        if (n <= 1) {
+	            return n;
+	        } else {
+	            return fibonacciRecursivo(n - 1) + fibonacciRecursivo(n - 2);
+	        }
+	    }
 	
 
 }
