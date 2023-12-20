@@ -6,29 +6,30 @@ public class Main {
 	public static void main(String args[]) {
 		Scanner read = new Scanner(System.in);
 
-		int[] numeros = { 10, 2, 3, 45, 9, 4, 31, 1, 9, 482, };
-		int [] numerosOrdenados= ordenarLista(numeros);
-		for(int i =0 ; i < numerosOrdenados.length;i++) {
-			System.out.println(numerosOrdenados[i]);
-		}
-		 
+		System.out.print("Digite seu nome :");
+	    String texto = read.nextLine();
+		
+		System.out.println(inverterString(texto));
 		
 	}
-
-	public static int[] ordenarLista(int[] lista) {
-		int aux = 0;
-		for (int i = 0; i < lista.length - 1; i++) {
-			for (int ii = 0; ii < lista.length - 1; ii++) {
-				if (lista[ii] > lista[ii + 1]) {
-					aux = lista[ii + 1];
-					lista[ii + 1] = lista[ii];
-					lista[ii] = aux;
-				}
-
-			}
+	
+	
+	public static String inverterString(String texto) {
+		char[] chars = texto.toCharArray();
+		char aux;
+		int tamanho = chars.length;
+		for(int i = 0 ; i < tamanho/2 ;i++) {
+			aux =chars[tamanho-1-i];
+			chars[tamanho-1-i] = chars[i];
+			chars[i] = aux;
+	
 		}
-		return lista;
-
+		String textoJunto = new String(chars);
+		
+		
+		return textoJunto;
 	}
+
+	
 
 }
