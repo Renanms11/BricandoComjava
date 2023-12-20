@@ -4,32 +4,25 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String args[]) {
+		Locale.setDefault(Locale.US);
 		Scanner read = new Scanner(System.in);
+		
+		System.out.println(fatorial(6));
+		
 
-		System.out.print("Digite seu nome :");
-	    String texto = read.nextLine();
-		
-		System.out.println(inverterString(texto));
-		
 	}
+
 	
 	
-	public static String inverterString(String texto) {
-		char[] chars = texto.toCharArray();
-		char aux;
-		int tamanho = chars.length;
-		for(int i = 0 ; i < tamanho/2 ;i++) {
-			aux =chars[tamanho-1-i];
-			chars[tamanho-1-i] = chars[i];
-			chars[i] = aux;
 	
+	
+	public static int fatorial(int x){
+		if(x == 0 || x == 1) {
+			return 1;
 		}
-		String textoJunto = new String(chars);
+		return x*fatorial(x-1);
 		
-		
-		return textoJunto;
 	}
-
 	
 
 }
