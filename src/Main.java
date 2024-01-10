@@ -1,42 +1,43 @@
-import java.util.Locale;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String args[]) {
-		Locale.setDefault(Locale.US);
 		Scanner read = new Scanner(System.in);
 
-		int[] listaDesordenada = { 5, 2, 3, 1, 48, 4, 6, 5, 9, 11 };
-
-		// int [] listaDesordenada = new int[10];
-		/*
-		 * for(int i = 0 ; i<listaDesordenada.length ; i++) {
-		 * System.out.println("digite o primeiro valor :"); listaDesordenada[i]=
-		 * read.nextInt(); }
-		 */
-
-		selectionSort(listaDesordenada);
-
-		for (int i = 0; i < listaDesordenada.length ; i++) {
-			System.out.print(listaDesordenada[i] + " ");
-
-		}
-
-	}
-
-	public static void selectionSort(int[] arr) {
-		for (int i = 0; i < arr.length - 1; i++) {
-			int index = i;
-			for (int j = i + 1; j < arr.length; j++) {
-				if (arr[j] < arr[index]) {
-					index = j;// searching for lowest index
-				}
+		String [] nomes = {"Romeo miranda Sena","Enzo miranda sena","Renan Miranda sena","Katianny maia oliveria miranda " 
+				            , "Kamila miranda Sena " , "Francisco de Assis Queiros de Sena", "Francimar miranda de moraes sena"};
+		String path = "C:\\Users\\renan\\OneDrive\\Área de Trabalho\\Programas\\meuTexto.txt";
+		try (BufferedReader br = new BufferedReader(new FileReader(path));
+			 BufferedWriter bw = new BufferedWriter(new FileWriter(path))){
+			
+			for(String nome : nomes) {
+				bw.write(nome);
+				bw.newLine();
 			}
-			int smallerNumber = arr[index];
-			arr[index] = arr[i];
-			arr[i] = smallerNumber;
-		}
+			bw.close();
+			
+
+			String line = br.readLine();
+			while (line != null) {
+				System.out.println(line);
+				line = br.readLine();
+			}
+			
+			
+			
+
+		} catch (IOException e) {
+			e.printStackTrace();
+
+		} 
+		
+
 	}
 
 }
