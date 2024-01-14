@@ -1,9 +1,11 @@
 import java.util.Locale;
 import java.util.Scanner;
 
+import com.azul.crs.runtime.utils.PackedDataEntriesMap.Entry;
+
 class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
 
 		Locale.setDefault(Locale.US);
 		Scanner read = new Scanner(System.in);
@@ -20,17 +22,37 @@ class Main {
 		thread2.start();
 		thread3.start();
 
-		while (thread.isAlive() || thread2.isAlive() || thread3.isAlive()) {
-			try {
-				Thread.sleep(200);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+/*
+		try {
+			// as thread 2 e3 e a principal so vamo comecar quando a thread1 acabar ou passar 200 mili segundos
+
+			thread.join(400);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
-		System.out.println("Programa finalizado !! ");
+		try {
+			// as thread 3 e a principal so vamo comecar quando a thread2 acabar
+			
+			thread2.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 		
+		
+		try {
+			thread.join();
+			thread2.join();
+			thread3.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		
+
+		System.out.println("Programa finalizado !! ");
 
 	}
 
