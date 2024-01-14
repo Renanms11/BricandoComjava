@@ -8,20 +8,19 @@ class Main {
 		Locale.setDefault(Locale.US);
 		Scanner read = new Scanner(System.in);
 
-		MinhaThread t  = new MinhaThread("thread 1 ", 500);
+		MinhaThread t = new MinhaThread("thread 1 ", 500);
 		MinhaThread t2 = new MinhaThread("thread 2 ", 500);
 		MinhaThread t3 = new MinhaThread("thread 3 ", 500);
-		
+
 		Thread thread = new Thread(t);
 		Thread thread2 = new Thread(t2);
 		Thread thread3 = new Thread(t3);
-		
+
 		thread.start();
 		thread2.start();
 		thread3.start();
 
-		
-		while(thread.isAlive() || thread2.isAlive()|| thread3.isAlive()) {
+		while (thread.isAlive() || thread2.isAlive() || thread3.isAlive()) {
 			try {
 				Thread.sleep(200);
 			} catch (InterruptedException e) {
@@ -29,9 +28,9 @@ class Main {
 				e.printStackTrace();
 			}
 		}
-		
-		System.out.println("Programa finalizado !! ");
 
+		System.out.println("Programa finalizado !! ");
+		
 
 	}
 
