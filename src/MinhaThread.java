@@ -1,35 +1,24 @@
 import java.awt.desktop.ScreenSleepEvent;
 
 public class MinhaThread implements Runnable {
-	String nome;
-	int tempo;
+	private String nome;
+	private int[] numes;
+	private static Calculadora calc = new Calculadora();
 
-
-
-	public MinhaThread(String nome, int tempo) {
+	public MinhaThread(String nome, int[] numes) {
 		super();
 		this.nome = nome;
-		this.tempo = tempo;
-		//Thread t = new Thread(this);
-		//t.start();
+		this.numes = numes;
+		new Thread(this, nome).start();
+		;
 	}
-
-
 
 	@Override
 	public void run() {
-		try {
-		for(int i = 0 ; i < 6 ; i++) {
-			System.out.println(nome + " " + (i+1));
-			Thread.sleep(tempo);
-			
-		}
-		}catch(InterruptedException e){
-			System.out.println(e);
-		}
-		System.out.println(nome + "Terminou a execução");
-		}
-
+		System.err.println(this.nome + " iniciada ");
+		int soma = calc.soma(numes);
+		System.out.println("resultado da soma é : " + soma);
+		System.out.println(this.nome + " finalizada ");
 	}
 
-
+}
