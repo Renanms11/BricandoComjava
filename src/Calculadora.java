@@ -3,7 +3,7 @@ public class Calculadora {
 	
 	private int soma;
 	
-	public int soma(int [] array) {
+	public synchronized int soma(int [] array) {
 		
 		soma = 0 ;
 		
