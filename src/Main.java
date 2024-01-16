@@ -8,33 +8,52 @@ class Main {
 
 		Locale.setDefault(Locale.US);
 		Scanner read = new Scanner(System.in);
-		
-		MinhaThread tt = new MinhaThread("thread1");
-		MinhaThread tt2 = new MinhaThread("thread2");
-		
-		tt.suspend();
-		
-		try {
-			Thread.sleep(300);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		tt2.suspend();
 
-		tt.resume();
+		final String lock1 = "Recurso 1";
+		final String lock2 = "Recurso 2";
 
-		try {
-			Thread.sleep(300);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		tt2.resume();
+		Thread t1 = new Thread() {
+			public void run() {
+				synchronized (lock1) {
+					System.out.println("Thread 1 bloqueou recurso 1");
+
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+						// TODO: handle exception
+					}
+					System.out.println("Thread 1 tentando acessar o recurso 2");
+					
+					synchronized (lock2) {
+						System.out.println("Thread 1 bloqueou recurso 2");
+					}
+				}
+			}
+		};
 		
 		
-		tt2.stop();
+		
+		Thread t2 = new Thread() {
+			public void run() {
+				synchronized (lock2) {
+					System.out.println("Thread 2 bloqueou recurso 2");
+
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+						// TODO: handle exception
+					}
+					
+					System.out.println("Thread 2 tentando acessar o recurso 1");
+					synchronized (lock1) {
+						System.out.println("Thread 2 bloqueou recurso 1");
+					}
+				}
+			}
+		};
+		
+		t1.start();
+		t2.start();
 
 	}
 
