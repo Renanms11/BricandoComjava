@@ -8,18 +8,33 @@ class Main {
 
 		Locale.setDefault(Locale.US);
 		Scanner read = new Scanner(System.in);
-		MinhaThread tt = new MinhaThread();
-
-		ThreadTiqueTaque tique = new ThreadTiqueTaque("tique", tt);
-		ThreadTiqueTaque taque = new ThreadTiqueTaque("taque", tt);
-
+		
+		MinhaThread tt = new MinhaThread("thread1");
+		MinhaThread tt2 = new MinhaThread("thread2");
+		
+		tt.suspend();
+		
 		try {
-
-			tique.t.join();
-			taque.t.join();
+			Thread.sleep(300);
 		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		tt2.suspend();
+
+		tt.resume();
+
+		try {
+			Thread.sleep(300);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		tt2.resume();
+		
+		
+		tt2.stop();
 
 	}
 

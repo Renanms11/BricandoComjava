@@ -1,55 +1,53 @@
 import java.awt.desktop.ScreenSleepEvent;
 
-public class MinhaThread {
+public class MinhaThread implements Runnable {
 
-	public boolean tique;
+	private boolean estaSuspensa, foiTerminada;
+	String nome;
+	Thread t = null;
 
-	public synchronized void tique(boolean estaExecutando) {
+	public MinhaThread(String nome) {
+		this.nome = nome;
+		this.estaSuspensa = false;
+		t = new Thread(this, nome);
+		t.start();
+	}
 
-		if (!estaExecutando) {
-
-			tique = true;
-			notify();
-			return ;
-		}
-		
-		System.out.print("Tique ");
-		tique = true;
-		notify();
-		
-		while(tique) {
+	@Override
+	public void run() {
+		System.err.println("Execuntando " + this.nome);
+		for (int i = 0; i < 10; i++) {
 			try {
-				wait();
+				System.out.println(this.nome + " " + i);
+				Thread.sleep(300);
+				synchronized (this) {
+					while (estaSuspensa) {
+						wait();
+					}
+					if(this.foiTerminada) {
+						break;
+					}
+				}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
 		}
+		System.out.println(this.nome + " Thread finalizada");
 
 	}
 	
-	public synchronized void taque(boolean estaExecutando) {
-
-		if (!estaExecutando) {
-
-			tique = false;
-			notify();
-			return ;
-		}
-		
-		System.out.println("Taque");
-		tique = false;
+	public synchronized void suspend() {
+		this.estaSuspensa = true;
 		notify();
-		
-		while(!tique) {
-			try {
-				wait();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
 	}
-
+	public synchronized void resume() {
+		this.estaSuspensa = false;
+		notify();
+	}
+	public synchronized void stop() {
+		this.foiTerminada = true;
+		notify();
+	}
 }
