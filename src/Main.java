@@ -1,20 +1,25 @@
 import java.util.Locale;
 import java.util.Scanner;
 
-
 class Main {
+	public static int i = 0;
 
-	public static void main(String[] args)  {
+	public static void main(String[] args) {
 
 		Locale.setDefault(Locale.US);
 		Scanner read = new Scanner(System.in);
-		
-		
-		int[] nums = {1,2,3,4,5};
+		MinhaThread tt = new MinhaThread();
 
-		MinhaThread minhaThread  = new MinhaThread("# 1" , nums);
-		MinhaThread minhaThread2 = new MinhaThread("# 2" , nums);
+		ThreadTiqueTaque tique = new ThreadTiqueTaque("tique", tt);
+		ThreadTiqueTaque taque = new ThreadTiqueTaque("taque", tt);
 
+		try {
+
+			tique.t.join();
+			taque.t.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 
 	}
 

@@ -1,24 +1,55 @@
 import java.awt.desktop.ScreenSleepEvent;
 
-public class MinhaThread implements Runnable {
-	private String nome;
-	private int[] numes;
-	private static Calculadora calc = new Calculadora();
+public class MinhaThread {
 
-	public MinhaThread(String nome, int[] numes) {
-		super();
-		this.nome = nome;
-		this.numes = numes;
-		new Thread(this, nome).start();
-		;
+	public boolean tique;
+
+	public synchronized void tique(boolean estaExecutando) {
+
+		if (!estaExecutando) {
+
+			tique = true;
+			notify();
+			return ;
+		}
+		
+		System.out.print("Tique ");
+		tique = true;
+		notify();
+		
+		while(tique) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 	}
+	
+	public synchronized void taque(boolean estaExecutando) {
 
-	@Override
-	public void run() {
-		System.err.println(this.nome + " iniciada ");
-		int soma = calc.soma(numes);
-		System.out.println("resultado da soma é : " + soma);
-		System.out.println(this.nome + " finalizada ");
+		if (!estaExecutando) {
+
+			tique = false;
+			notify();
+			return ;
+		}
+		
+		System.out.println("Taque");
+		tique = false;
+		notify();
+		
+		while(!tique) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 }
