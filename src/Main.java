@@ -9,9 +9,21 @@ class Main {
 		Locale.setDefault(Locale.US);
 		Scanner read = new Scanner(System.in);
 
+		Semaforo sem = new Semaforo();
+		
+		
+		sem.t.start();
+		
+	  try{
+		  Thread.sleep(100000);
+		  sem.stop();
+		  
+	  }catch(InterruptedException e) {
+		  e.printStackTrace();
+	  }
+	 
+	  System.out.println("FIM DO PROGRAMA !!");
 
 	}
-	
-	
 
 }
