@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -16,8 +17,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-public class Janela extends JDialog {
+public class Janela extends JDialog  {
 
 	JPanel janela = new JPanel(new GridBagLayout());
 	JLabel label1 = new JLabel("Nome");
@@ -132,5 +132,12 @@ public class Janela extends JDialog {
 
 		int result = fileChooser2.showSaveDialog(fileChooser2);
 	}
+
+
+
+
+	
+
+	
 
 }

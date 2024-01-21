@@ -9,21 +9,12 @@ class Main {
 		Locale.setDefault(Locale.US);
 		Scanner read = new Scanner(System.in);
 
-		Semaforo sem = new Semaforo();
 		
+		Integer x =20;
 		
-		sem.t.start();
-		
-	  try{
-		  Thread.sleep(100000);
-		  sem.stop();
-		  
-	  }catch(InterruptedException e) {
-		  e.printStackTrace();
-	  }
-	 
-	  System.out.println("FIM DO PROGRAMA !!");
+	 MinhaClasseGeneriaca<Integer> minhaclasse = new MinhaClasseGeneriaca<Integer>(x);
+	 minhaclasse.showTipo();
 
+	
 	}
-
 }
