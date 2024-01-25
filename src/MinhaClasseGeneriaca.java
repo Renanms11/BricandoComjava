@@ -1,16 +1,21 @@
+import java.util.List;
 
 public class MinhaClasseGeneriaca <T>{
 	
 	private T objeto = null;
-	
-	
-	public MinhaClasseGeneriaca(T objeto){
-		this.objeto = objeto;
-	}
+	private List<T> lista = null;
 	
 	public MinhaClasseGeneriaca(){
 	}
 	
+	public MinhaClasseGeneriaca(T objeto){
+		this.objeto = objeto;
+		
+	}
+	
+	
+	
+
 	public T getOjeto() {
 		return objeto;
 	}
@@ -22,7 +27,7 @@ public class MinhaClasseGeneriaca <T>{
 	
 	public void setObjeto(T objetoNovo) {
 	
-		this.objeto = objeto;
+		this.objeto = objetoNovo;
 	}
 
 }
