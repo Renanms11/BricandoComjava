@@ -11,11 +11,13 @@ class Main {
 		Scanner read = new Scanner(System.in);
 		
 		
-		MinhaClasseGeneriaca<String, Integer> minhag = 
-				new MinhaClasseGeneriaca<String, Integer>("Renan miranda Sena",35);
+		boolean da;
 		
 		
-		System.out.println(minhag.getOjeto() + " " + minhag.getOjeto2());
+		MinhaClasseGeneriaca<Double> objdouble = new MinhaClasseGeneriaca<>(1.5);
+		MinhaClasseGeneriaca<Float> objfloat= new MinhaClasseGeneriaca<>(1.5f);
+
+		System.out.println(objdouble.isAbsu(objfloat));
 				
 	
 	}
